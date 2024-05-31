@@ -2,6 +2,7 @@ import React from "react";
 import { ColList } from "./components/ColList";
 import styled from "styled-components";
 
+
 export const App = () => {
   return (
     <Wrap>
