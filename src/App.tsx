@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./app.css"
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="col">
+        <h1 className="col_h1" data-type="copy">
+          text
+        </h1>
+        <button className="col_button" data-type="lock">
+          <i className="fa-solid fa-lock-open" data-type="lock"></i>
+        </button>
+      </div>
+      <div className="col">
+        <h1 className="col_h1" data-type="copy">
+          text
+        </h1>
+        <button className="col_button" data-type="lock">
+          <i className="fa-solid fa-lock-open" data-type="lock"></i>
+        </button>
+      </div>
+      <div className="col">
+        <h1 className="col_h1" data-type="copy">
+          text
+        </h1>
+        <button className="col_button" data-type="lock">
+          <i className="fa-solid fa-lock-open" data-type="lock"></i>
+        </button>
+      </div>
+      <div className="col">
+        <h1 className="col_h1" data-type="copy">
+          text
+        </h1>
+        <button className="col_button" data-type="lock">
+          <i className="fa-solid fa-lock-open" data-type="lock"></i>
+        </button>
+      </div>
+      <div className="col">
+        <h1 className="col_h1" data-type="copy">
+          text
+        </h1>
+        <button className="col_button" data-type="lock">
+          <i className="fa-solid fa-lock-open" data-type="lock"></i>
+        </button>
+      </div>
     </div>
   );
-}
-
-export default App;
+};
