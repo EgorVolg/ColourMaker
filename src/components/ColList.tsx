@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+ 
 import { ColItem } from "./ColItem";
 
 export const ColList = () => {
@@ -22,7 +23,6 @@ export const ColList = () => {
       setRandomColor(generateColor());
     }
   };
-  
 
   const onLockOpen = () => {
     setIsLocked(!isLocked);
@@ -30,14 +30,29 @@ export const ColList = () => {
 
   return (
     <ColListWrap onKeyDown={handleKeyDown}>
-      <Col randomColor={randomColor}>
+      {/* <Col randomColor={randomColor}>
         <ColText> {randomColor} </ColText>
         <LockOpenButton
           onClick={onLockOpen}
           className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
-      
         />
-      </Col>
+   </Col> */}
+
+      <ColItem
+        randomColor={randomColor}
+        onLockOpen={onLockOpen}
+        isLocked={isLocked}
+      />
+      <ColItem
+        randomColor={randomColor}
+        onLockOpen={onLockOpen}
+        isLocked={isLocked}
+      />
+      <ColItem
+        randomColor={randomColor}
+        onLockOpen={onLockOpen}
+        isLocked={isLocked}
+      />
       <ColItem
         randomColor={randomColor}
         onLockOpen={onLockOpen}

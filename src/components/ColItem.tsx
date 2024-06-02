@@ -1,20 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { TColList } from "./types";
 
-type Tcol = {
-  randomColor: string;
-  isLocked: boolean;
-  onLockOpen: (isLocked: boolean) => boolean;
-};
-
-export const ColItem: React.FC<Tcol> = ({
+export const ColItem: React.FC<TColList> = ({
   randomColor,
   onLockOpen,
   isLocked,
 }) => {
-    
   return (
-    <Col onClick={onLockOpen}>
+    <Col randomColor={randomColor} onClick={onLockOpen}>
       <ColText> {randomColor} </ColText>
       <LockOpenButton
         className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
