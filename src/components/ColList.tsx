@@ -1,53 +1,79 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 // import { ColItems } from "./ColItems";
 
 export const ColList = () => {
-  const [isLocked, setIsLocked] = useState(false);
-  const [randomColor, setRandomColor] = useState(false);
+  const [randomColor, setRandomColor] = React.useState("#fff");
+  const [isLocked, setIsLocked] = React.useState(true);
+
+  const hexCodes = "0123456789ABCDEF";
+  let color = "";
+
+  const generateColor = () => {
+    for (let i = 0; i < 6; i++) {
+      color += hexCodes[Math.floor(Math.random() * hexCodes.length)];
+    }
+    return "#" + color;
+  };
+
+  const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    if (e.key === "Enter") {
+      setRandomColor(generateColor());
+    }
+  };
 
   const onLockOpen = () => {
     setIsLocked(!isLocked);
   };
 
-  const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-    if (e.key === "Enter") {
-      generateColour();
-    }
-  };
-
-  const generateColour = () => {
-    const hexCodes = "0123456789ABCDEF";
-    let color = "";
-    for (let i = 0; i < 6; i++) {
-      color += hexCodes[Math.floor(Math.random() * hexCodes.length)];
-    }
-    return ( color = "#" + color);
-  };
+ 
 
   return (
-    <div>
-      <Col
-        onKeyDown={handleKeyDown}
-        // style={{ backgroundColor: `${color}` }}
-      >
-        <ColText>{  } </ColText>
+    <ColListWrap onKeyDown={handleKeyDown}>
+      <Col randomColor={randomColor}>
+        <ColText> {randomColor} </ColText>
+        <LockOpenButton
+          onClick={onLockOpen}
+       className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
+        />
+      </Col>
+      <Col randomColor={randomColor}>
+        <ColText> {randomColor} </ColText>
         <LockOpenButton
           onClick={onLockOpen}
           className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
-        ></LockOpenButton>
+        />
       </Col>
-    </div>
+      <Col randomColor={randomColor}>
+        <ColText> {randomColor} </ColText>
+        <LockOpenButton
+          onClick={onLockOpen}
+          className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
+        />
+      </Col>
+      <Col randomColor={randomColor}>
+        <ColText> {randomColor} </ColText>
+        <LockOpenButton
+          onClick={onLockOpen}
+          className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
+        />
+      </Col>
+    </ColListWrap>
   );
 };
 
-const Col = styled.div`
+const ColListWrap = styled.div`
+  display: flex;
+  width: 100vw;
+`;
+
+const Col = styled.div<{ randomColor: string }>`
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: ;
+  background-color: ${(p) => p.randomColor};
 `;
 
 const ColText = styled.h1`

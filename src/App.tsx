@@ -2,10 +2,9 @@ import React from "react";
 import { ColList } from "./components/ColList";
 import styled from "styled-components";
 
-
 export const App = () => {
   return (
-    <Wrap>
+    <Wrap >
       <ColList />
     </Wrap>
   );
@@ -16,5 +15,3 @@ const Wrap = styled.div`
   display: flex;
   font-family: "Madimi One", sans-serif;
 `;
-
- 
