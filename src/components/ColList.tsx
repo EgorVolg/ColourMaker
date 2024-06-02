@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-// import { ColItems } from "./ColItems";
+import { ColItem } from "./ColItem";
 
 export const ColList = () => {
   const [randomColor, setRandomColor] = React.useState("#fff");
@@ -18,15 +18,15 @@ export const ColList = () => {
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       setRandomColor(generateColor());
     }
   };
+  
 
   const onLockOpen = () => {
     setIsLocked(!isLocked);
   };
-
- 
 
   return (
     <ColListWrap onKeyDown={handleKeyDown}>
@@ -34,30 +34,15 @@ export const ColList = () => {
         <ColText> {randomColor} </ColText>
         <LockOpenButton
           onClick={onLockOpen}
-       className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
-        />
-      </Col>
-      <Col randomColor={randomColor}>
-        <ColText> {randomColor} </ColText>
-        <LockOpenButton
-          onClick={onLockOpen}
           className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
+      
         />
       </Col>
-      <Col randomColor={randomColor}>
-        <ColText> {randomColor} </ColText>
-        <LockOpenButton
-          onClick={onLockOpen}
-          className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
-        />
-      </Col>
-      <Col randomColor={randomColor}>
-        <ColText> {randomColor} </ColText>
-        <LockOpenButton
-          onClick={onLockOpen}
-          className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
-        />
-      </Col>
+      <ColItem
+        randomColor={randomColor}
+        onLockOpen={onLockOpen}
+        isLocked={isLocked}
+      />
     </ColListWrap>
   );
 };
