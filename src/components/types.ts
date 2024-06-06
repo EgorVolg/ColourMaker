@@ -1,7 +1,6 @@
-
-export type TColList = {
-    randomColor: string;
-    isLocked: boolean;
-    onLockOpen: () => void;
-  };
-  
+export type TColoumn = {
+  colText: string,
+  id: number,
+  onLockOpen: () => void,
+  isLocked: boolean
+}

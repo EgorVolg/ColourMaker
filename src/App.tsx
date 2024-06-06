@@ -1,12 +1,53 @@
 import React from "react";
-import { ColList } from "./components/ColList";
 import styled from "styled-components";
- 
 
-export const App  = () => {
+export const App = () => {
+  const [isLocked, setIsLocked] = React.useState(true);
+  const [randomColor, setRandomColor] = React.useState("white");
+  const [coloumns, setColoumns] = React.useState();
+
+  const arrayOfColoumns = [
+    { color: randomColor, id: 1, lockState: isLocked },
+    { color: randomColor, id: 2, lockState: isLocked },
+    { color: randomColor, id: 3, lockState: isLocked },
+    { color: randomColor, id: 4, lockState: isLocked },
+  ];
+
+  const generateColor = () => {
+    const hexCodes = "0123456789ABCDEF";
+    let color = "";
+    for (let i = 0; i < 6; i++) {
+      color += hexCodes[Math.floor(Math.random() * hexCodes.length)];
+    }
+    return (color = "#" + color);
+  };
+
+  const onLockOpen = () => {
+    setIsLocked(!isLocked);
+  };
+
+  const clickToSpace: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    if (e.key === "Space") {
+      e.preventDefault();
+      setRandomColor(generateColor());
+    }
+  };
+
   return (
-    <Wrap >
-      <ColList />
+    <Wrap onKeyDown={clickToSpace}>
+      <ColListWrap>
+        {arrayOfColoumns.map((col) => {
+          <Col bgcolor={col.color}>
+            <ColText>{col.color} </ColText>
+            <LockOpenButton
+              className={
+                isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"
+              }
+              onClick={onLockOpen}
+            />
+          </Col>;
+        })}
+      </ColListWrap>
     </Wrap>
   );
 };
@@ -15,4 +56,42 @@ const Wrap = styled.div`
   height: 100vh;
   display: flex;
   font-family: "Madimi One", sans-serif;
+`;
+
+const ColListWrap = styled.div`
+  display: flex;
+  width: 100vw;
+`;
+
+const Col = styled.div<{ bgcolor: string }>`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: ${(p) => p.bgcolor};
+`;
+
+const ColText = styled.h1`
+  padding: 20px;
+  color: #000000;
+  :hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+    cursor: pointer;
+  }
+`;
+
+const LockOpenButton = styled.button`
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  background: transparent;
+  font-size: 1.5em;
+  padding: 10px;
+  :hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
+    border-radius: 25px;
+  }
 `;
