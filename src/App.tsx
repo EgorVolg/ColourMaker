@@ -3,15 +3,8 @@ import styled from "styled-components";
 
 export const App = () => {
   const [isLocked, setIsLocked] = React.useState(true);
-  const [randomColor, setRandomColor] = React.useState("white");
+  const [color, setColor] = React.useState("white");
   const [coloumns, setColoumns] = React.useState();
-
-  const arrayOfColoumns = [
-    { color: randomColor, id: 1, lockState: isLocked },
-    { color: randomColor, id: 2, lockState: isLocked },
-    { color: randomColor, id: 3, lockState: isLocked },
-    { color: randomColor, id: 4, lockState: isLocked },
-  ];
 
   const generateColor = () => {
     const hexCodes = "0123456789ABCDEF";
@@ -19,7 +12,7 @@ export const App = () => {
     for (let i = 0; i < 6; i++) {
       color += hexCodes[Math.floor(Math.random() * hexCodes.length)];
     }
-    return (color = "#" + color);
+    return setColor(color = "#" + color);
   };
 
   const onLockOpen = () => {
@@ -29,24 +22,21 @@ export const App = () => {
   const clickToSpace: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (e.key === "Space") {
       e.preventDefault();
-      setRandomColor(generateColor());
+      generateColor()
     }
   };
 
   return (
     <Wrap onKeyDown={clickToSpace}>
       <ColListWrap>
-        {arrayOfColoumns.map((col) => {
-          <Col bgcolor={col.color}>
-            <ColText>{col.color} </ColText>
-            <LockOpenButton
-              className={
-                isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"
-              }
-              onClick={onLockOpen}
-            />
-          </Col>;
-        })}
+        <Col bgcolor={setColor}>
+          <ColText>{setColor} </ColText>
+          <LockOpenButton
+            className={isLocked ? "fa-solid fa-lock-open" : "fa-solid fa-lock"}
+            onClick={onLockOpen}
+          />
+        </Col>
+        ;
       </ColListWrap>
     </Wrap>
   );
