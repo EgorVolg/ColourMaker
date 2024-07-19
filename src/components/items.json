@@ -1,0 +1,22 @@
+[
+    {
+        "color": "white",
+        "id": 1,
+        "isLocked": false
+    },
+    {
+        "color": "white",
+        "id": 2,
+        "isLocked": false
+    },
+    {
+        "color": "white",
+        "id": 3,
+        "isLocked": false
+    },
+    {
+        "color": "white",
+        "id": 4,
+        "isLocked": false
+    }
+]
