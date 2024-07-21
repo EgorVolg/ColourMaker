@@ -9,7 +9,6 @@ type TColListProps = {
 
 export const ColList = ({ items }: TColListProps) => {
   const [cols, setCols] = useState<TCol[]>(items);
-console.log(cols);
 
   const onChangeCol = (col: TCol) => {
     const hexCodes = "0123456789ABCDEF";
@@ -20,7 +19,7 @@ console.log(cols);
     const newColor = "#" + color;
 
     return setCols((cols) =>
-      cols.map((el) => (el.id === col.id ? { ...el, newColor } : el))
+      cols.map((el) => (el.id === col.id ? { ...el, color: newColor } : el))
     );
   };
 
