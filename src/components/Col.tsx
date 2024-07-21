@@ -1,19 +1,18 @@
 import styled from "styled-components";
 import { TCol } from "./types/types";
-import { useState } from "react";
 
-export const Col = ({ color, id, isLocked }: TCol) => {
-  const [lock, setLock] = useState(isLocked)
+type TColoumnFC = TFunctionType & TCol;
+type TFunctionType = {
+  onChangeCol: (col: any) => void;
+  // : (isLocked: boolean) => void;
+};
 
-  const onClickOpen = () => {
-    setLock(!lock)
-  }
-
+export const Col: React.FC<TColoumnFC> = ({ color, id, onChangeCol }) => {
   return (
-    <Coloumn bgColor={color}>
+    <Coloumn bgColor={color} onClick={onChangeCol}>
       <h1>{color}</h1>
       <p>{id}</p>
-      <button onClick={onClickOpen}>open</button>
+      <button>open</button>
     </Coloumn>
   );
 };
