@@ -1,27 +1,45 @@
 import styled from "styled-components";
 import { Col } from "./Col";
 import { TCol } from "./types/types";
+import { useState } from "react";
 
 type TColListProps = {
-  cols: TCol[];
+  items: TCol[];
 };
 
-export const ColList = ({ cols }: TColListProps) => {
-  // const generateColor = () => {
-  //   const hexCodes = "0123456789ABCDEF";
-  //   let color = "";
-  //   for (let i = 0; i < 6; i++) {
-  //     color += hexCodes[Math.floor(Math.random() * hexCodes.length)];
-  //   }
-  //   const newColor = "#" + color;
-  // };
+export const ColList = ({ items }: TColListProps) => {
+  const [cols, setCols] = useState<TCol[]>(items);
+console.log(cols);
 
   const onChangeCol = (col: TCol) => {
-    return console.log(col);
+    const hexCodes = "0123456789ABCDEF";
+    let color = "";
+    for (let i = 0; i < 6; i++) {
+      color += hexCodes[Math.floor(Math.random() * hexCodes.length)];
+    }
+    const newColor = "#" + color;
+
+    return setCols((cols) =>
+      cols.map((el) => (el.id === col.id ? { ...el, newColor } : el))
+    );
   };
 
-  const onLockCol = (id: number) => {
-    return console.log(id);
+  // const onChangeCol = (newColor: string, col: TCol) => {
+  //   generateColor();
+
+  //   return setCols((cols) =>
+  //     cols.map((el) => (el.id === col.id ? { ...el, newColor } : el))
+  //   );
+  // };
+
+  const onLockCol = (col: TCol) => {
+    if ((col.isLocked = false)) {
+      // return setCols((prev) =>
+      //   prev.map((el) =>
+      //    )
+      // );
+      return console.log(col);
+    }
   };
 
   return (
@@ -34,7 +52,7 @@ export const ColList = ({ cols }: TColListProps) => {
           id={col.id}
           isLocked={col.isLocked}
           onChangeCol={() => onChangeCol(col)}
-          onLockCol={() => onLockCol(col.id)}
+          onLockCol={() => onLockCol(col)}
         />
       ))}
     </ColContainer>
