@@ -16,8 +16,12 @@ export const ColList = ({ cols }: TColListProps) => {
   //   const newColor = "#" + color;
   // };
 
-  const onChangeCol = (col: any) => {
+  const onChangeCol = (col: TCol) => {
     return console.log(col);
+  };
+
+  const onLockCol = (id: number) => {
+    return console.log(id);
   };
 
   return (
@@ -30,6 +34,7 @@ export const ColList = ({ cols }: TColListProps) => {
           id={col.id}
           isLocked={col.isLocked}
           onChangeCol={() => onChangeCol(col)}
+          onLockCol={() => onLockCol(col.id)}
         />
       ))}
     </ColContainer>
